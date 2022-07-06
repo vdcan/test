@@ -24,17 +24,7 @@ pipeline {
         echo 'Pushing to Docker Registry...'
       }
     }
-    stage('SonarQube') {
-      steps {
-        echo 'Uploading to Sonar...'
-        withCredentials(bindings: [string(credentialsId: 'sonar.login', variable: 'TOKEN')]) {
-          bat """
-                      mvn sonar:sonar -Dsonar.host.url=http://52.226.67.67 -Dsonar.login=$TOKEN
-                    """
-        }
-        
-      }
-    }
+    
     stage('Kubernetes') {
       steps {
         echo 'Updating Kubernetes resources...'
