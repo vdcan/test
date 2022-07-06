@@ -11,7 +11,7 @@ pipeline {
     stage('Maven Build') {
       steps {
         echo 'Building Maven...'
-        sh 'mvn clean package'
+        bat 'mvn clean package'
       }
     }
     stage('Docker Build') {
@@ -28,7 +28,7 @@ pipeline {
       steps {
         echo 'Uploading to Sonar...'
         withCredentials(bindings: [string(credentialsId: 'sonar.login', variable: 'TOKEN')]) {
-          sh """
+          bat """
                       mvn sonar:sonar -Dsonar.host.url=http://52.226.67.67 -Dsonar.login=$TOKEN
                     """
         }
