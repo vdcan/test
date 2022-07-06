@@ -1,0 +1,34 @@
+node {
+   def docker_app
+   
+   stage('Checkout') {
+      checkout scm
+   }
+   
+   stage('Build & Unit Test') {
+      echo "Not implemented."
+   }
+      
+   stage('Docker_build') {
+      echo "Building Docker image..."
+      echo "Current directory: ${pwd}"
+      docker_app = docker.build("hfokr/statelessphp:${env.BUILD_ID}", "./stateless-php")
+      //sh "sudo docker build -t statelessphp:${env.BUILD_NUMBER} ./stateless-php"
+   }
+   
+   stage('Automated Testing') {
+      echo "Not implemented."
+   }
+   
+   stage('Push Docker image') {
+      docker.withRegistry('https://registry.hub.docker.com', 'docker_hub') {
+         docker_app.push("${env.BUILD_NUMBER}")
+         docker_app.push("latest")
+      }
+   }
+   
+   stage('Deploy to Kubernetes_test'){
+      echo "Branch name: ${env.BRANCH_NAME}"
+   }
+   
+}
