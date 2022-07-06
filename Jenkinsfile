@@ -5,7 +5,7 @@ pipeline {
   stages {
     stage('Checkout') {
       steps {
-        git 'https://github.com/vdcan/test.git'
+        git 'https://github.com/gaussic/SpringMVCDemo.git'
       }
     }
     stage('Maven Build') {
