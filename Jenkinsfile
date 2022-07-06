@@ -5,7 +5,7 @@ pipeline {
   stages {
     stage('Checkout') {
       steps {
-        git 'https://github.com/hijmenfokker/kubernetes-jenkins-ci-cd.git'
+        git 'https://github.com/vdcan/test.git'
       }
     }
     stage('Maven Build') {
