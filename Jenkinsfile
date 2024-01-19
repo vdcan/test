@@ -11,7 +11,7 @@ pipeline {
     stage('Maven Build') {
       steps {
         echo 'Building Maven...'
-        bat 'mvn clean package'
+        sh 'mvn clean package'
       }
     }
     stage('Docker Build') {
@@ -23,8 +23,7 @@ pipeline {
       steps {
         echo 'Pushing to Docker Registry...'
       }
-    }
-    
+    }    
     stage('Kubernetes') {
       steps {
         echo 'Updating Kubernetes resources...'
