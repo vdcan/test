@@ -11,6 +11,8 @@ pipeline {
     stage('Maven Build') {
       steps {
         echo 'Building Maven...'
+        sh 'pwd'
+        sh 'cat pom.xml'
         sh 'mvn clean package'
       }
     }
